@@ -15,7 +15,7 @@ find "$dir_in" -iname "*.avi" -o -iname "*.mp4" | while read line
 do
 	echo "$line"
 	output=`echo "$line" | sed -e "s|$dir_in|$dir_out|"` 
-	output="${output%.mp4}.avi"			# always set output format to avi, because avi supports lossless, raw video
+	output="${output::-4}.avi"			# always set output format to avi, because avi supports lossless, raw video
 	folder=`dirname "$output"`
 	#echo "$folder"
 	mkdir -p "$folder"

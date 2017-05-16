@@ -9,8 +9,12 @@ then
 	exit 0
 fi
 
-dir_in=$(realpath $1)
-dir_out=$(realpath $2)
+# readlink -f : make absolute path, file must exist
+# readlink -m : files doesn't have to exist
+
+dir_in=$(readlink -f $1)
+dir_out=$(readlink -m $2)
+
 find "$dir_in" -iname "*.avi" -o -iname "*.mp4" | while read line
 do
 	echo "$line"

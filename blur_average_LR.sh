@@ -23,8 +23,9 @@ do
 	folder=`dirname "$output"`
 	#echo "$folder"
 	mkdir -p "$folder"
-	#ffmpeg -i "$line" -filter:v "boxblur=2:1,crop=min(in_w\,in_h*4/3):min(in_h\,in_w*3/4)" -c:v rawvideo "$output" < /dev/null &> /dev/null
-	ffmpeg -i "$line" -filter:v "crop=min(in_w\,in_h*4/3):min(in_h\,in_w*3/4),scale=16:12:flags=area" -c:v rawvideo "$output" < /dev/null &> /dev/null
+	#ffmpeg -i "$line" -filter:v "crop=min(in_w\,in_h*4/3):min(in_h\,in_w*3/4)" -c:v rawvideo "$output" < /dev/null &> /dev/null
+	#ffmpeg -i "$line" -filter:v "boxblur=2:1,crop=min(in_w\,in_h*4/3):min(in_h\,in_w*3/4),scale=16:12:flags=area,noise=alls=20:allf=a" -c:v ffvhuff "$output" < /dev/null &> /dev/null
+	ffmpeg -i "$line" -filter:v "boxblur=2:1,crop=min(in_w\,in_h*4/3):min(in_h\,in_w*3/4),scale=16:12:flags=area" -c:v ffvhuff "$output" < /dev/null &> /dev/null
 	# always use ffmpeg with null input. It will interfere.
 done
 

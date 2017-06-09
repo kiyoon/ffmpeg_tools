@@ -18,7 +18,8 @@ do
 	folder=`dirname "$output"`
 	#echo "$folder"
 	mkdir -p "$folder"
-	ffmpeg -i "$line" -filter:v "crop=min(in_w\,in_h*4/3):min(in_h\,in_w*3/4),scale=320:240" -c:v mpeg4 -vtag xvid -qscale:v 7 -an "$output" < /dev/null &> /dev/null
+	ffmpeg -i "$line" -filter:v "boxblur=2:1,crop=min(in_w\,in_h*4/3):min(in_h\,in_w*3/4),scale=320:240" -c:v mpeg4 -vtag xvid -qscale:v 7 -an "$output" < /dev/null &> /dev/null
+	#ffmpeg -i "$line" -filter:v "boxblur=2:1,crop=min(in_w\,in_h*4/3):min(in_h\,in_w*3/4),scale=320:240" -c:v ffvhuff "$output" < /dev/null &> /dev/null
 	# always use ffmpeg with null input. It will interfere.
 done
 
